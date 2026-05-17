@@ -6,6 +6,6 @@ resources:
 
 images:
 - name: 968225077300.dkr.ecr.us-east-1.amazonaws.com/workshop-backend
-  newTag: 046f54f
+  newTag: e83eec7
 - name: 968225077300.dkr.ecr.us-east-1.amazonaws.com/workshop-frontend
   newTag: latest
