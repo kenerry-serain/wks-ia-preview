@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dvn-workshop-apps", "dvn-workshop-apps", "{65E29598-F6E0-886D-0AE7-CBD1C00F5B2A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{D5C8C8FD-73BE-4172-4B4F-6FFDE28193B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeLiveApp", "dvn-workshop-apps\backend\YoutubeLiveApp\YoutubeLiveApp.csproj", "{7CD81A3D-CBEB-DD73-6E79-3D010B83EF35}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CD81A3D-CBEB-DD73-6E79-3D010B83EF35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CD81A3D-CBEB-DD73-6E79-3D010B83EF35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CD81A3D-CBEB-DD73-6E79-3D010B83EF35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CD81A3D-CBEB-DD73-6E79-3D010B83EF35}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D5C8C8FD-73BE-4172-4B4F-6FFDE28193B8} = {65E29598-F6E0-886D-0AE7-CBD1C00F5B2A}
+		{7CD81A3D-CBEB-DD73-6E79-3D010B83EF35} = {D5C8C8FD-73BE-4172-4B4F-6FFDE28193B8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8F9D841-41AE-4449-95C9-EFEA73743AA3}
+	EndGlobalSection
+EndGlobal

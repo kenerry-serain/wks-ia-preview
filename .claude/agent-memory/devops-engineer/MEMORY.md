@@ -1,0 +1,4 @@
+- [ADR-001 Bootstrap Implementation](adr001_bootstrap_implementation.md) — ADR-001 reimplemented 2026-05-12 (rev2); 11 files in infra/bootstrap/; DynamoDB removed, use_lockfile = true adopted; empty backend "s3" {} pattern kept
+- [ADR-002 Network Stack Implementation](adr002_network_stack_implementation.md) — VPC stack generated 2026-05-14, 13 files in terraform/01-network-stack/; single NAT Gateway in us-east-1a; routes via separate aws_route resources
+- [Project application stacks](project_app_stacks.md) — frontend is Next.js 14 (not plain React); backend is .NET 8 ASP.NET Core (not Node.js); real source under dvn-workshop-apps/
+- [Session 2026-05-14: Dockerfiles](session_2026_05_14_dockerfiles.md) — frontend + backend Dockerfiles, .dockerignore, placeholder sources created under apps/

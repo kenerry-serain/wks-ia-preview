@@ -1,0 +1,75 @@
+name: CI/CD Frontend
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'dvn-workshop-apps/frontend/**'
+
+permissions:
+  id-token: write
+  contents: write
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REGISTRY: 968225077300.dkr.ecr.us-east-1.amazonaws.com
+  ECR_REPOSITORY: workshop-frontend
+  IMAGE_NAME: 968225077300.dkr.ecr.us-east-1.amazonaws.com/workshop-frontend
+
+jobs:
+  build-and-deploy:
+    name: Build, Push, and Update Manifests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::968225077300:role/workshop-github-actions-role
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: ecr-login
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Generate image tag
+        id: image-tag
+        run: echo "tag=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: dvn-workshop-apps/frontend/youtube-live-app
+          push: true
+          tags: ${{ env.IMAGE_NAME }}:${{ steps.image-tag.outputs.tag }}
+
+      - name: Update Kustomize image tag
+        run: |
+          cd kubernetes/overlays/production
+          kustomize edit set image ${{ env.IMAGE_NAME }}:${{ steps.image-tag.outputs.tag }}
+
+      - name: Commit and push manifest update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add kubernetes/overlays/production/kustomization.yaml
+          git commit -m "chore(frontend): update image tag to ${{ steps.image-tag.outputs.tag }}"
+
+          MAX_RETRIES=3
+          RETRY_COUNT=0
+          until git push; do
+            RETRY_COUNT=$((RETRY_COUNT + 1))
+            if [ "$RETRY_COUNT" -ge "$MAX_RETRIES" ]; then
+              echo "ERROR: Failed to push after $MAX_RETRIES retries"
+              exit 1
+            fi
+            echo "Push failed (attempt $RETRY_COUNT/$MAX_RETRIES). Pulling with rebase..."
+            git pull --rebase
+          done

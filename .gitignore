@@ -1,0 +1,22 @@
+# Terraform
+**/.terraform/
+*.tfplan
+*.tfstate
+*.tfstate.backup
+
+# macOS
+.DS_Store
+
+# .NET
+**/obj/
+**/bin/
+
+# Node
+node_modules/
+
+# IDE
+.idea/
+.vscode/
+
+# Docker
+*.log

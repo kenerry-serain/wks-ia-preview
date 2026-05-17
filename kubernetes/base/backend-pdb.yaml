@@ -1,0 +1,13 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: workshop-backend
+  labels:
+    app: workshop-backend
+    environment: production
+    managed-by: kubectl
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: workshop-backend

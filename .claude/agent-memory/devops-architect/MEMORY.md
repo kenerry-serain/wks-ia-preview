@@ -1,0 +1,4 @@
+- [Workshop initial context](project_workshop_context.md) -- projeto vazio, ADR-001 criado, CLAUDE.md pendente
+- [VPC Architecture](project_vpc_architecture.md) -- ADR-002: /24 VPC, 4x /26 subnets, single NAT GW in us-east-1
+- [Stack Structure](project_stack_structure.md) -- Numbered stacks (00-, 01-, 02-) with S3 backend.hcl pattern
+- [EKS IP Constraints](project_eks_ip_constraints.md) -- /24 VPC limits EKS to ~34 pods, no prefix delegation on /26

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: workshop-frontend
+  labels:
+    app: workshop-frontend
+    version: v1.0
+    environment: production
+    managed-by: kubectl
+spec:
+  type: ClusterIP
+  selector:
+    app: workshop-frontend
+  ports:
+    - port: 80
+      targetPort: 3000
+      protocol: TCP
