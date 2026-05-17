@@ -8,4 +8,4 @@ images:
 - name: 968225077300.dkr.ecr.us-east-1.amazonaws.com/workshop-backend
   newTag: e83eec7
 - name: 968225077300.dkr.ecr.us-east-1.amazonaws.com/workshop-frontend
-  newTag: latest
+  newTag: 92a54b9
